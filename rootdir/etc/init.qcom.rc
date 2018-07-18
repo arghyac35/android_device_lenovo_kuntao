@@ -1348,7 +1348,7 @@ service hbtp /vendor/bin/hbtp_daemon
 
 #lenovo-sw weiweij added for smart_charger fast charger switch dameon
 service smart_charger /vendor/bin/smart_charger
-    class  main
+    class main
     user root
     seclabel u:r:smart_charger:s0
 
@@ -1583,3 +1583,4 @@ service vfmService /vendor/bin/vfmService
     user system
     group system
     class main
+    seclabel u:r:vfmService:s0
