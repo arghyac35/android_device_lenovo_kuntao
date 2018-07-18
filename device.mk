@@ -80,7 +80,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libbt-vendor \
     android.hardware.bluetooth@1.0-impl \
-    android.hardware.bluetooth@1.0-service
+    android.hardware.bluetooth@1.0-service \
+    bt-mac-generator
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -362,17 +363,22 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service
 
+# RCS
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_api \
+    rcs_service_api.xml
+
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
     wcnss_service \
     wificond \
-    wifilogd \
     hostapd \
-    libwifi-hal-qcom \
+    readmac \
     libcld80211 \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
+    wifi-mac-generator \
     wpa_supplicant \
     wpa_supplicant.conf
 
