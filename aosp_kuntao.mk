@@ -22,6 +22,7 @@ $(call inherit-product, vendor/aosp/common.mk)
 
 # Boot animation res
 TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_BOOTANIMATION_HALF_RES := true
 
 # Override build properties.
 PRODUCT_BUILD_PROP_OVERRIDES += \
