@@ -362,17 +362,20 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service
 
+# RCS
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_api \
+    rcs_service_api.xml
+
 # Wifi
 PRODUCT_PACKAGES += \
     libwpa_client \
     wcnss_service \
     wificond \
-    wifilogd \
     hostapd \
-    libwifi-hal-qcom \
     libcld80211 \
-    libqsap_sdk \
-    libQWiFiSoftApCfg \
     wpa_supplicant \
     wpa_supplicant.conf
 
