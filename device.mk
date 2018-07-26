@@ -283,17 +283,6 @@ PRODUCT_PACKAGES += \
     libandroid_net \
     netutils-wrapper-1.0
 
-# Camera-face detection
-PRODUCT_PACKAGES += \
-    org.codeaurora.camera \
-    org.codeaurora.camera.xml
-
-PRODUCT_BOOT_JARS += \
-    org.codeaurora.camera
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.facedetect=1
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-service-qti
@@ -380,5 +369,3 @@ PRODUCT_COPY_FILES += \
     kernel/lenovo/msm8953/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
-
-export EXTENDED_BUILD_TYPE=OFFICIAL
