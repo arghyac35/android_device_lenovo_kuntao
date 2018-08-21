@@ -275,10 +275,9 @@ on boot
     chmod 0664 /sys/board_properties/tpd_glove_status
     chmod 0660 /dev/rmi0
 #lenovo-sw wengjun1 add 20160504 end
-    chmod 0755 /system/vendor/bin/vfmService
+    chmod 0755 /vendor/bin/vfmService
     chmod 0660 /dev/vfsspi
     chown system system /dev/vfsspi
-    mkdir /data/validity 0775 system system
     mkdir /dev/validity 0775 system system
     chmod 0660 /sys/bus/platform/devices/soc:fingerprint@0/shutdown
     chown system system /sys/bus/platform/devices/soc:fingerprint@0/shutdown
@@ -912,27 +911,27 @@ on post-fs
     chmod 0600 /persist/whisper/whisper_only/vector0.bin
 
     chown mot_tcmd root /sys/class/power_supply/ext-charger/charge_enabled
-    chmod 0664  /sys/class/power_supply/ext-charger/charge_enabled
+    chmod 0664 /sys/class/power_supply/ext-charger/charge_enabled
     chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/charge_enabled
-    chmod 0664  sys/class/power_supply/ext-charger-dual/charge_enabled
+    chmod 0664 /sys/class/power_supply/ext-charger-dual/charge_enabled
     chown mot_tcmd root /sys/class/power_supply/ext-charger/battery_charging_enabled
-    chmod 0664  /sys/class/power_supply/ext-charger/battery_charging_enabled
+    chmod 0664 /sys/class/power_supply/ext-charger/battery_charging_enabled
     chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/battery_charging_enabled
-    chmod 0664  /sys/class/power_supply/ext-charger-dual/battery_charging_enabled
+    chmod 0664 /sys/class/power_supply/ext-charger-dual/battery_charging_enabled
     chown mot_tcmd root /sys/class/power_supply/ext-charger/current_max
-    chmod 0664  /sys/class/power_supply/ext-charger/current_max
+    chmod 0664 /sys/class/power_supply/ext-charger/current_max
     chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/current_max
-    chmod 0664  /sys/class/power_supply/ext-charger-dual/current_max
+    chmod 0664 /sys/class/power_supply/ext-charger-dual/current_max
     chown mot_tcmd root /sys/class/power_supply/ext-charger/input_current_max
-    chmod 0664  /sys/class/power_supply/ext-charger/input_current_max
+    chmod 0664 /sys/class/power_supply/ext-charger/input_current_max
     chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/input_current_max
-    chmod 0664  /sys/class/power_supply/ext-charger-dual/input_current_max
+    chmod 0664 /sys/class/power_supply/ext-charger-dual/input_current_max
     chown mot_tcmd root /sys/class/power_supply/ext-charger/current_max
-    chmod 0664  /sys/class/power_supply/ext-charger/current_max
+    chmod 0664 /sys/class/power_supply/ext-charger/current_max
     chown mot_tcmd root /sys/class/power_supply/battery/device/force_chg_fail_clear
-    chmod 0664  /sys/class/power_supply/battery/device/force_chg_fail_clear
+    chmod 0664 /sys/class/power_supply/battery/device/force_chg_fail_clear
     chown mot_tcmd root /sys/class/power_supply/ext-charger/usb_otg
-    chmod 0664  /sys/class/power_supply/ext-charger/usb_otg
+    chmod 0664 /sys/class/power_supply/ext-charger/usb_otg
 #lenovo.common.rc import end
 
     # default country code
@@ -958,6 +957,7 @@ on post-fs-data
     mkdir /data/misc/stargate/bg_estimation 0770 system system
     mkdir /data/misc/stargate/calib_test 0770 system system
     mkdir /data/misc/stargate/database 0770 system system
+    mkdir /data/validity 0775 system system
 
     # Begin, lenovo-sw liyuan8 20161223, for preload app
     mkdir /data/app-lib2 0771 system system
@@ -1093,7 +1093,6 @@ on post-fs-data
     # NFC local data and nfcee xml storage
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
-    mkdir /data/vendor/nfc/param 0770 nfc nfc
 
     #Create IOP  deamon related dirs
     mkdir /data/vendor/iop 0770 root system
@@ -1190,9 +1189,8 @@ service cnd /vendor/bin/cnd
     class main
     user system
     group system wifi inet radio wakelock net_admin
-    writepid /dev/cpuset/system-background/tasks
 
-service dpmQmiMgr /system/vendor/bin/dpmQmiMgr
+service dpmQmiMgr /vendor/bin/dpmQmiMgr
     class main
     user system
     group system
@@ -1298,7 +1296,7 @@ on property:bluetooth.hciattach=true
 
 # FM
 on property:hw.fm.init=0
-      write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
+     write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
 
 on property:hw.fm.init=1
      write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
@@ -1360,17 +1358,18 @@ service hbtp /vendor/bin/hbtp_daemon
 
 #lenovo-sw weiweij added for smart_charger fast charger switch dameon
 service smart_charger /vendor/bin/smart_charger
-    class  main
+    class main
     user root
     seclabel u:r:smart_charger:s0
 
 #lenovo-sw weiweij added for smart_charger fast charger switch dameon end
 
 #lenovo-sw wengjun,2016-2-26,add touch boot script begin
-service mmi-touch-sh /system/bin/init.mmi.touch.sh
+service mmi-touch-sh /system/bin/sh /init.mmi.touch.sh
     class core
     user root
     oneshot
+    disabled
 #lenovo-sw wengjun,2016-2-26,touch boot script end
 
 service ppd /vendor/bin/mm-pp-dpps
@@ -1444,7 +1443,7 @@ service ipacm /vendor/bin/ipacm
 
 service imsqmidaemon /vendor/bin/imsqmidaemon
     class main
-    user net_Admin
+    user net_admin
     group net_admin inet
     disabled
 
