@@ -1475,6 +1475,7 @@ service cs-post-boot /system/bin/sh /persist/coresight/qdss.agent.sh
     oneshot
 
 on property:sys.boot_completed=1
+    setprop persist.sys.fp.navigation 1
     start cs-post-boot
 
 # disable thermal & BCL core_control to update interactive gov settings
